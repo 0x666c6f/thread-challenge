@@ -5,11 +5,13 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Message {
-    private String ball;
-    private MessageSide side;
-    private Boolean response;
-    private String threadName;
     private Integer requestId;
+    private String threadName;
+    private MessageSide side;
+    private String ball;
+    private Boolean response;
+
+
     private static ThreadLocalRandom random = ThreadLocalRandom.current();
 
     public Message() {
@@ -17,15 +19,16 @@ public class Message {
     }
 
     public Message(String ball, MessageSide side, String threadName) {
+        //TODO : modifier l'ordre des paramètres
         generateID();
         this.threadName = threadName;
-        this.ball = ball;
         this.side = side;
+        this.ball = ball;
         this.response = null;
     }
 
     private void generateID() {
-        requestId = random.nextInt(999999);
+        this.requestId = random.nextInt(999999);
     }
 
     public String getBall() {

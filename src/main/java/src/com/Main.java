@@ -22,26 +22,49 @@ public class Main {
         String thread2Name = "thread1";
         String thread3Name = "thread2";
 
-        String[] stack1 = new String[]{"R","R","R","G","G","G","B","B","B","R"};
+        /*String[] stack1 = new String[]{"R","R","R","G","G","G","B","B","B","R"};
         String[] stack2 = new String[]{"G","G","G","R","R","B","B","B","R","R"};
+        String[] stack3 = new String[]{"B","B","B","B","R","G","G","G","G","R"};*/
+
+        String[] stack1 = new String[]{"R","R","G","G","G","G","B","B","B","R"};
+        String[] stack2 = new String[]{"G","G","R","R","R","B","B","B","R","R"};
         String[] stack3 = new String[]{"B","B","B","B","R","G","G","G","G","R"};
 
         BlockingQueue<Message> requestQueue1 = new ArrayBlockingQueue<>(2);
         BlockingQueue<Message> requestQueue2 = new ArrayBlockingQueue<>(2);
         BlockingQueue<Message> requestQueue3 = new ArrayBlockingQueue<>(2);
 
-        BlockingQueue<Message> callbackQueue12 = new ArrayBlockingQueue<>(1);
-        BlockingQueue<Message> callbackQueue13 = new ArrayBlockingQueue<>(1);
-        BlockingQueue<Message> callbackQueue23 = new ArrayBlockingQueue<>(1);
+        BlockingQueue<Message> callbackQueue12 = new ArrayBlockingQueue<>(2);
+        BlockingQueue<Message> callbackQueue21 = new ArrayBlockingQueue<>(2);
 
-        CommunicationChannel channel1to2 = new CommunicationChannel(requestQueue2,callbackQueue12);
-        CommunicationChannel channel1to3 = new CommunicationChannel(requestQueue3,callbackQueue13);
+        BlockingQueue<Message> callbackQueue13 = new ArrayBlockingQueue<>(2);
+        BlockingQueue<Message> callbackQueue31 = new ArrayBlockingQueue<>(2);
 
-        CommunicationChannel channel2to1 = new CommunicationChannel(requestQueue1, callbackQueue12);
-        CommunicationChannel channel2to3 = new CommunicationChannel(requestQueue3,callbackQueue23);
+        BlockingQueue<Message> callbackQueue23 = new ArrayBlockingQueue<>(2);
+        BlockingQueue<Message> callbackQueue32 = new ArrayBlockingQueue<>(2);
 
-        CommunicationChannel channel3to1 = new CommunicationChannel(requestQueue1,callbackQueue13);
-        CommunicationChannel channel3to2 = new CommunicationChannel(requestQueue2,callbackQueue23);
+        HashMap<String, BlockingQueue<Message>> callbackQueues12 = new HashMap<>();
+        callbackQueues12.put(thread1Name, callbackQueue12);
+        callbackQueues12.put(thread2Name, callbackQueue21);
+
+        HashMap<String, BlockingQueue<Message>> callbackQueues13 = new HashMap<>();
+        callbackQueues13.put(thread1Name, callbackQueue13);
+        callbackQueues13.put(thread3Name, callbackQueue31);
+
+        HashMap<String, BlockingQueue<Message>> callbackQueues23 = new HashMap<>();
+        callbackQueues23.put(thread2Name, callbackQueue23);
+        callbackQueues23.put(thread3Name, callbackQueue32);
+
+
+
+        CommunicationChannel channel1to2 = new CommunicationChannel(requestQueue2,callbackQueues12);
+        CommunicationChannel channel1to3 = new CommunicationChannel(requestQueue3,callbackQueues13);
+
+        CommunicationChannel channel2to1 = new CommunicationChannel(requestQueue1, callbackQueues12);
+        CommunicationChannel channel2to3 = new CommunicationChannel(requestQueue3,callbackQueues23);
+
+        CommunicationChannel channel3to1 = new CommunicationChannel(requestQueue1,callbackQueues13);
+        CommunicationChannel channel3to2 = new CommunicationChannel(requestQueue2,callbackQueues23);
 
         HashMap<String,CommunicationChannel> threadQueuesMap1 = new HashMap<>();
         threadQueuesMap1.put(thread2Name,channel1to2);
@@ -67,10 +90,6 @@ public class Main {
         Thread thread3 = new Thread(worker3);
         thread3.start();
     }
-
-
-
-
 
 
 }

@@ -2,16 +2,17 @@ package src.com.channel;
 
 import src.com.messages.Message;
 
+import java.util.HashMap;
 import java.util.concurrent.BlockingQueue;
 
 public class CommunicationChannel {
     private BlockingQueue<Message> requestQueue;
-    private BlockingQueue<Message> callbackQueue;
+    private HashMap< String, BlockingQueue<Message>> callbackQueues;
     private Boolean hasInventory = true;
 
-    public CommunicationChannel(BlockingQueue<Message> requestQueue, BlockingQueue<Message> callbackQueue) {
+    public CommunicationChannel(BlockingQueue<Message> requestQueue, HashMap< String, BlockingQueue<Message>> callbackQueues) {
         this.requestQueue = requestQueue;
-        this.callbackQueue = callbackQueue;
+        this.callbackQueues = callbackQueues;
     }
 
     public BlockingQueue<Message> getRequestQueue() {
@@ -22,12 +23,12 @@ public class CommunicationChannel {
         this.requestQueue = requestQueue;
     }
 
-    public BlockingQueue<Message> getCallbackQueue() {
-        return callbackQueue;
+    public HashMap< String, BlockingQueue<Message>> getCallbackQueues() {
+        return callbackQueues;
     }
 
-    public void setCallbackQueue(BlockingQueue<Message> callbackQueue) {
-        this.callbackQueue = callbackQueue;
+    public void setCallbackQueues(HashMap< String, BlockingQueue<Message>> callbackQueues) {
+        this.callbackQueues = callbackQueues;
     }
 
     public Boolean getHasInventory() {

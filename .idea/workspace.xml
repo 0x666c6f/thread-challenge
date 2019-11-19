@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3e4fc943-0220-48ce-91cd-a1b7e90d9628" name="Default Changelist" comment="" />
+    <list default="true" id="3e4fc943-0220-48ce-91cd-a1b7e90d9628" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/src/com/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/src/com/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/src/com/channel/CommunicationChannel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/src/com/channel/CommunicationChannel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/src/com/messages/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/src/com/messages/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/src/com/worker/WorkerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/src/com/worker/WorkerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/src/com/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/src/com/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/src/com/channel/CommunicationChannel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/src/com/channel/CommunicationChannel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/src/com/messages/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/src/com/messages/Message.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/src/com/worker/WorkerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/src/com/worker/WorkerThread.class" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +26,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -31,7 +45,9 @@
     </option>
   </component>
   <component name="ProjectId" id="1ThPNBE4aFx1GTkSPuqICxX0Vo9" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -92,24 +108,25 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/src/com/worker/WorkerThread.java</url>
-          <line>60</line>
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/src/com/worker/WorkerThread.java</url>
-          <line>178</line>
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="finalize = false" language="JAVA" />
+        <watch expression="this.stack.size()" language="JAVA" />
+        <watch expression="channels.get(threadNameI).getCallbackQueue()" language="JAVA" />
+        <watch expression="this.stack" language="JAVA" />
+        <watch expression="channel.getCallbackQueue().size()" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
