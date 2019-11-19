@@ -95,11 +95,8 @@ public class WorkerThread implements Runnable {
                 incomingMessage = requestQueue.poll();
 
                 if (incomingMessage != null && incomingMessage.getThreadName() != null) {
-                    String threadNameI = incomingMessage.getThreadName();
-                    logger.info("Incoming request from " + threadNameI + " = " + incomingMessage.toString());
 
                     processIncomingRequest(incomingMessage);
-                    //TODO : tester channels.get thread name != null + get call back queue != null
                 }
             }
 
@@ -130,9 +127,11 @@ public class WorkerThread implements Runnable {
     private void processIncomingRequest(Message incomingMessage) {
 
         String threadNameI = incomingMessage.getThreadName();
+
         Message response = new Message();
 
-        if (incomingMessage.getSide() == MessageSide.REQUEST) {
+        if (incomingMessage.getSide() == MessageSide.REQUEST && threadNameI != null) {
+            logger.info("Incoming request from " + threadNameI + " = " + incomingMessage.toString());
 
             response.setRequestId(incomingMessage.getRequestId());
             response.setThreadName(incomingMessage.getThreadName());
@@ -158,10 +157,9 @@ public class WorkerThread implements Runnable {
             }
 
             try {
-                //TODO : check null thread + CBQ
                 channels.get(threadNameI).getCallbackQueues().get(threadNameI).put(response);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            } catch (InterruptedException | NullPointerException e) {
+                logger.error("Error while trying to put response : " + e.getMessage());
             }
         }
 
@@ -178,7 +176,12 @@ public class WorkerThread implements Runnable {
             }
         } else {
 
-            Message response = channel.getCallbackQueues().get(this.name).poll();
+            Message response = null;
+            try {
+                response = channel.getCallbackQueues().get(this.name).poll();
+            } catch (NullPointerException e) {
+                logger.error("Error while trying to poll response : " + e.getMessage());
+            }
 
             if (response != null) {
 
@@ -191,15 +194,10 @@ public class WorkerThread implements Runnable {
                         logger.warn("Request was rejected from " + threadName);
                         reprocessTarget();
                     }
-
                 } else {
                     logger.warn("Response was null from " + threadName + " : " + response.toString());
                 }
-
             }
-
         }
-
     }
-
 }
