@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e4fc943-0220-48ce-91cd-a1b7e90d9628" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/src/com/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/src/com/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/src/com/channel/CommunicationChannel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/src/com/channel/CommunicationChannel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/src/com/messages/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/src/com/messages/Message.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/src/com/worker/WorkerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/src/com/worker/WorkerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/src/com/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/src/com/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/src/com/channel/CommunicationChannel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/src/com/channel/CommunicationChannel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/src/com/messages/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/src/com/messages/Message.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/src/com/worker/WorkerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/src/com/worker/WorkerThread.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

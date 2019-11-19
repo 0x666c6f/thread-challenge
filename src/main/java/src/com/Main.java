@@ -22,13 +22,13 @@ public class Main {
         String thread2Name = "thread1";
         String thread3Name = "thread2";
 
-        /*String[] stack1 = new String[]{"R","R","R","G","G","G","B","B","B","R"};
+         String[] stack1 = new String[]{"R","R","R","G","G","G","B","B","B","R"};
         String[] stack2 = new String[]{"G","G","G","R","R","B","B","B","R","R"};
-        String[] stack3 = new String[]{"B","B","B","B","R","G","G","G","G","R"};*/
-
-        String[] stack1 = new String[]{"R","R","G","G","G","G","B","B","B","R"};
-        String[] stack2 = new String[]{"G","G","R","R","R","B","B","B","R","R"};
         String[] stack3 = new String[]{"B","B","B","B","R","G","G","G","G","R"};
+
+//        String[] stack1 = new String[]{"R","R","G","G","G","G","B","B","B","R"};
+//        String[] stack2 = new String[]{"G","G","R","R","R","B","B","B","R","R"};
+//        String[] stack3 = new String[]{"B","B","B","B","R","G","G","G","G","R"};
 
         BlockingQueue<Message> requestQueue1 = new ArrayBlockingQueue<>(2);
         BlockingQueue<Message> requestQueue2 = new ArrayBlockingQueue<>(2);
