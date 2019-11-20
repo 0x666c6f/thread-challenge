@@ -8,7 +8,7 @@ import java.util.concurrent.BlockingQueue;
 public class CommunicationChannel {
     private BlockingQueue<Message> requestQueue;
     private HashMap< String, BlockingQueue<Message>> callbackQueues;
-    private Boolean hasInventory = true;
+    private Boolean disabled = false;
 
     public CommunicationChannel(BlockingQueue<Message> requestQueue, HashMap< String, BlockingQueue<Message>> callbackQueues) {
         this.requestQueue = requestQueue;
@@ -31,11 +31,11 @@ public class CommunicationChannel {
         this.callbackQueues = callbackQueues;
     }
 
-    public Boolean getHasInventory() {
-        return hasInventory;
+    public Boolean getDisabled() {
+        return disabled;
     }
 
-    public void setHasInventory(Boolean hasInventory) {
-        this.hasInventory = hasInventory;
+    public void setDisabled(Boolean disabled) {
+        this.disabled = disabled;
     }
 }

@@ -109,7 +109,8 @@ public class WorkerThread implements Runnable {
                 CommunicationChannel channel = entry.getValue();
 
                 //TODO : tester entry sur key et value != null
-                processOutgoingRequest(threadName, channel);
+                //if(channel.getDisabled() == false)
+                    processOutgoingRequest(threadName, channel);
             }
 
             Set<String> targetSet = new HashSet<String>(stack);
@@ -152,32 +153,29 @@ public class WorkerThread implements Runnable {
                     response.setResponse(false);
                 }
 
-                try {
-                    channels.get(threadNameI).getCallbackQueues().get(threadNameI).put(response);
-                } catch (InterruptedException | NullPointerException e) {
-                    logger.error("Error while trying to put response : " + e.getMessage());
-                }
-
             } else if (stack.contains(incomingMessage.getBall())) {
 
                 logger.info("Incoming request from " + threadNameI + " is not on our target, accepting it");
 
                 if (!this.stack.remove(incomingMessage.getBall())) {
-                    logger.error("Couldn't remove " + incomingMessage.getBall() + " from our stack " + this.stack.toString());
+                    logger.error("Couldn't remove " + incomingMessage.getBall() + " from our stack");
                     response.setResponse(null);
                 } else {
-                    logger.info("Sucessfully removed " + incomingMessage.getBall() + " from our stack " + this.stack.toString());
+                    logger.info("Sucessfully removed " + incomingMessage.getBall() + " from our stack");
                     response.setResponse(true);
                 }
 
-                try {
-                    channels.get(threadNameI).getCallbackQueues().get(threadNameI).put(response);
-                } catch (InterruptedException | NullPointerException e) {
-                    logger.error("Error while trying to put response : " + e.getMessage());
-                }
 
+
+            } else {
+                response.setResponse(null);
             }
 
+            try {
+                channels.get(threadNameI).getCallbackQueues().get(threadNameI).put(response);
+            } catch (InterruptedException | NullPointerException e) {
+                logger.error("Error while trying to put response : " + e.getMessage());
+            }
 
         }
 
@@ -192,7 +190,7 @@ public class WorkerThread implements Runnable {
             if (!result) {
                 return;
             }
-            logger.info("Successfully sent request");
+            logger.info("Successfully sent request to " + threadName + " = " + message.toString());
             pendingRequests.put(message.getThreadName(), message);
         } else {
 
@@ -213,13 +211,16 @@ public class WorkerThread implements Runnable {
 
                     if (response.getResponse() == true) {
                         logger.info("Request was accepted from " + threadName);
-                        this.stack.add(target);
+                        this.stack.add(response.getBall());
                     } else if (response.getResponse() == false) {
                         logger.warn("Request was rejected from " + threadName);
                         reprocessTarget();
+                        channel.setDisabled(false);
                     }
                 } else {
                     logger.warn("Response was null from " + threadName + " : " + response.toString());
+                    if(response.getBall().equals(target))
+                        channel.setDisabled(true);
                 }
             }
         }
