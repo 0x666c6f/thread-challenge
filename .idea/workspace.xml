@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3e4fc943-0220-48ce-91cd-a1b7e90d9628" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/src/com/channel/CommunicationChannel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/src/com/channel/CommunicationChannel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/src/com/worker/WorkerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/src/com/worker/WorkerThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/src/com/worker/WorkerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/src/com/worker/WorkerThread.class" afterDir="false" />
     </list>
@@ -116,25 +115,14 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/src/com/worker/WorkerThread.java</url>
-          <line>111</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/src/com/worker/WorkerThread.java</url>
-          <line>112</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="this.stack.size()" language="JAVA" />
         <watch expression="this.stack.toString()" language="JAVA" />
         <watch expression="this.target" language="JAVA" />
+        <watch expression="channel.getDisabled()" language="JAVA" />
+        <watch expression="pendingRequests.get(threadName)" language="JAVA" />
+        <watch expression="channel.getCallbackQueues().get(this.name)" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>

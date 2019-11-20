@@ -26,7 +26,7 @@ public class WorkerThread implements Runnable {
         this.stack = stackArg;
         this.channels = channels;
         this.requestQueue = requestQueue;
-        pendingRequests = new HashMap<>();
+        this.pendingRequests = new HashMap<>();
         logger.info("Initializing Worker Thread " + name);
         processMajorColor();
     }
@@ -114,7 +114,7 @@ public class WorkerThread implements Runnable {
             }
 
             Set<String> targetSet = new HashSet<String>(stack);
-//            logger.info("Current stack :" + stack.toString());
+            //logger.info("Current stack :" + stack.toString());
 //            logger.info("Current set :" + targetSet.toString());
 
             if (targetSet.size() == 1 && stack.size() == 10) {
@@ -123,6 +123,12 @@ public class WorkerThread implements Runnable {
             }
         }
 
+        for (Map.Entry<String, CommunicationChannel> entry : channels.entrySet()) {
+            CommunicationChannel channel = entry.getValue();
+
+            channel.getCallbackQueues().get(this.name).clear();
+        }
+        this.requestQueue.clear();
         logger.info(this.name.toUpperCase() + " EXITED");
         Thread.currentThread().interrupt();
     }
@@ -185,7 +191,7 @@ public class WorkerThread implements Runnable {
 
         Message message = new Message(target, MessageSide.REQUEST, this.name);
         message.setTimestamp(new Timestamp( new Date().getTime()));
-        if (channel.getCallbackQueues().get(this.name).size() == 0 && pendingRequests.get(threadName) == null) {
+        if (channel.getCallbackQueues().get(this.name).size() == 0 && !pendingRequests.containsKey(threadName)) {
             Boolean result = channel.getRequestQueue().offer(message);
             if (!result) {
                 return;
@@ -205,14 +211,14 @@ public class WorkerThread implements Runnable {
                 Message pendingMessage = pendingRequests.get(threadName);
 
                 if(pendingMessage != null && response.getRequestId().equals(pendingMessage.getRequestId())){
-                    pendingRequests.clear();
+                    pendingRequests.remove(threadName);
                 }
                 if (response.getResponse() != null) {
 
                     if (response.getResponse() == true) {
                         logger.info("Request was accepted from " + threadName);
                         this.stack.add(response.getBall());
-                    } else if (response.getResponse() == false) {
+                    } else if (response.getResponse() == false && response.getBall().equals(this.target)) {
                         logger.warn("Request was rejected from " + threadName);
                         reprocessTarget();
                         channel.setDisabled(false);
