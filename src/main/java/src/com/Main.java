@@ -30,18 +30,18 @@ public class Main {
 //        String[] stack2 = new String[]{"G","G","R","R","R","B","B","B","R","R"};
 //        String[] stack3 = new String[]{"B","B","B","B","R","G","G","G","G","R"};
 
-        BlockingQueue<Message> requestQueue1 = new ArrayBlockingQueue<>(2);
-        BlockingQueue<Message> requestQueue2 = new ArrayBlockingQueue<>(2);
-        BlockingQueue<Message> requestQueue3 = new ArrayBlockingQueue<>(2);
+        BlockingQueue<Message> requestQueue1 = new ArrayBlockingQueue<>(1);
+        BlockingQueue<Message> requestQueue2 = new ArrayBlockingQueue<>(1);
+        BlockingQueue<Message> requestQueue3 = new ArrayBlockingQueue<>(1);
 
-        BlockingQueue<Message> callbackQueue12 = new ArrayBlockingQueue<>(2);
-        BlockingQueue<Message> callbackQueue21 = new ArrayBlockingQueue<>(2);
+        BlockingQueue<Message> callbackQueue12 = new ArrayBlockingQueue<>(1);
+        BlockingQueue<Message> callbackQueue21 = new ArrayBlockingQueue<>(1);
 
-        BlockingQueue<Message> callbackQueue13 = new ArrayBlockingQueue<>(2);
-        BlockingQueue<Message> callbackQueue31 = new ArrayBlockingQueue<>(2);
+        BlockingQueue<Message> callbackQueue13 = new ArrayBlockingQueue<>(1);
+        BlockingQueue<Message> callbackQueue31 = new ArrayBlockingQueue<>(1);
 
-        BlockingQueue<Message> callbackQueue23 = new ArrayBlockingQueue<>(2);
-        BlockingQueue<Message> callbackQueue32 = new ArrayBlockingQueue<>(2);
+        BlockingQueue<Message> callbackQueue23 = new ArrayBlockingQueue<>(1);
+        BlockingQueue<Message> callbackQueue32 = new ArrayBlockingQueue<>(1);
 
         HashMap<String, BlockingQueue<Message>> callbackQueues12 = new HashMap<>();
         callbackQueues12.put(thread1Name, callbackQueue12);

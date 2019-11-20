@@ -1,6 +1,8 @@
 package src.com.messages;
 
 import java.nio.charset.Charset;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -10,6 +12,7 @@ public class Message {
     private MessageSide side;
     private String ball;
     private Boolean response;
+    private Timestamp timestamp;
 
 
     private static ThreadLocalRandom random = ThreadLocalRandom.current();
@@ -82,4 +85,11 @@ public class Message {
         this.requestId = requestId;
     }
 
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
 }

@@ -3,10 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="3e4fc943-0220-48ce-91cd-a1b7e90d9628" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/src/com/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/src/com/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/src/com/messages/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/src/com/messages/Message.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/src/com/worker/WorkerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/src/com/worker/WorkerThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/log4j.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/src/com/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/src/com/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/src/com/worker/WorkerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/src/com/worker/WorkerThread.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -109,13 +111,39 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/src/com/worker/WorkerThread.java</url>
+          <line>217</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/src/com/worker/WorkerThread.java</url>
+          <line>144</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/src/com/worker/WorkerThread.java</url>
+          <line>209</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/src/com/worker/WorkerThread.java</url>
+          <line>189</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="finalize = false" language="JAVA" />
@@ -123,6 +151,7 @@
         <watch expression="channels.get(threadNameI).getCallbackQueue()" language="JAVA" />
         <watch expression="this.stack" language="JAVA" />
         <watch expression="channel.getCallbackQueue().size()" language="JAVA" />
+        <watch expression="pendingRequests.get(threadName)" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>

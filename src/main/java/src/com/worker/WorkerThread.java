@@ -6,6 +6,7 @@ import src.com.channel.CommunicationChannel;
 import src.com.messages.Message;
 import src.com.messages.MessageSide;
 
+import java.sql.Timestamp;
 import java.util.*;
 import java.util.concurrent.BlockingQueue;
 
@@ -17,6 +18,7 @@ public class WorkerThread implements Runnable {
     private BlockingQueue<Message> requestQueue;
     private String target;
     private String name;
+    private HashMap<String,Message> pendingRequests;
     private static final Logger logger = LoggerFactory.getLogger(WorkerThread.class);
 
     public WorkerThread(String name, ArrayList<String> stackArg, HashMap<String, CommunicationChannel> channels, BlockingQueue<Message> requestQueue) {
@@ -24,6 +26,7 @@ public class WorkerThread implements Runnable {
         this.stack = stackArg;
         this.channels = channels;
         this.requestQueue = requestQueue;
+        pendingRequests = new HashMap<>();
         logger.info("Initializing Worker Thread " + name);
         processMajorColor();
     }
@@ -110,8 +113,8 @@ public class WorkerThread implements Runnable {
             }
 
             Set<String> targetSet = new HashSet<String>(stack);
-            logger.info("Current stack :" + stack.toString());
-            logger.info("Current set :" + targetSet.toString());
+//            logger.info("Current stack :" + stack.toString());
+//            logger.info("Current set :" + targetSet.toString());
 
             if (targetSet.size() == 1 && stack.size() == 10) {
                 logger.info(this.name.toUpperCase() + " FINISHED");
@@ -139,12 +142,24 @@ public class WorkerThread implements Runnable {
             response.setBall(incomingMessage.getBall());
 
             if (incomingMessage.getBall().equals(this.target)) {
-                logger.info("Incoming request from " + threadNameI + " is rejected because it is our target");
-                response.setResponse(false);
-            } else if (!stack.contains(incomingMessage.getBall())) {
-                logger.info("Incoming request from " + threadNameI + " is rejected because we don't have it");
-                response.setResponse(null);
-            } else {
+                Message pendingMessage = pendingRequests.get(threadNameI);
+                if(pendingMessage != null && pendingMessage.getTimestamp().after(incomingMessage.getTimestamp())){
+                    logger.info("Incoming request from " + threadNameI + " is same as our target, but accepting it because timestamp was before ours");
+                    response.setResponse(true);
+                    reprocessTarget();
+                }else {
+                    logger.info("Incoming request from " + threadNameI + " is rejected because it is our target");
+                    response.setResponse(false);
+                }
+
+                try {
+                    channels.get(threadNameI).getCallbackQueues().get(threadNameI).put(response);
+                } catch (InterruptedException | NullPointerException e) {
+                    logger.error("Error while trying to put response : " + e.getMessage());
+                }
+
+            } else if (stack.contains(incomingMessage.getBall())) {
+
                 logger.info("Incoming request from " + threadNameI + " is not on our target, accepting it");
 
                 if (!this.stack.remove(incomingMessage.getBall())) {
@@ -154,13 +169,16 @@ public class WorkerThread implements Runnable {
                     logger.info("Sucessfully removed " + incomingMessage.getBall() + " from our stack " + this.stack.toString());
                     response.setResponse(true);
                 }
+
+                try {
+                    channels.get(threadNameI).getCallbackQueues().get(threadNameI).put(response);
+                } catch (InterruptedException | NullPointerException e) {
+                    logger.error("Error while trying to put response : " + e.getMessage());
+                }
+
             }
 
-            try {
-                channels.get(threadNameI).getCallbackQueues().get(threadNameI).put(response);
-            } catch (InterruptedException | NullPointerException e) {
-                logger.error("Error while trying to put response : " + e.getMessage());
-            }
+
         }
 
     }
@@ -168,12 +186,14 @@ public class WorkerThread implements Runnable {
     private void processOutgoingRequest(String threadName, CommunicationChannel channel) {
 
         Message message = new Message(target, MessageSide.REQUEST, this.name);
-
-        if (channel.getCallbackQueues().get(this.name).size() == 0) {
+        message.setTimestamp(new Timestamp( new Date().getTime()));
+        if (channel.getCallbackQueues().get(this.name).size() == 0 && pendingRequests.get(threadName) == null) {
             Boolean result = channel.getRequestQueue().offer(message);
             if (!result) {
                 return;
             }
+            logger.info("Successfully sent request");
+            pendingRequests.put(message.getThreadName(), message);
         } else {
 
             Message response = null;
@@ -184,8 +204,12 @@ public class WorkerThread implements Runnable {
             }
 
             if (response != null) {
+                Message pendingMessage = pendingRequests.get(threadName);
 
-                if (response.getResponse() != null && target.equals(response.getBall())) {
+                if(pendingMessage != null && response.getRequestId().equals(pendingMessage.getRequestId())){
+                    pendingRequests.clear();
+                }
+                if (response.getResponse() != null) {
 
                     if (response.getResponse() == true) {
                         logger.info("Request was accepted from " + threadName);
