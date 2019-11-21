@@ -2,13 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e4fc943-0220-48ce-91cd-a1b7e90d9628" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/src/com/LauncherTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/src/com/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/src/com/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/src/com/channel/CommunicationChannel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/src/com/channel/CommunicationChannel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/src/com/messages/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/src/com/messages/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/src/com/messages/MessageSide.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/src/com/messages/MessageSide.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/src/com/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/src/com/Launcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/src/com/worker/WorkerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/src/com/worker/WorkerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/src/com/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/src/com/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/log4j.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/src/com/Main.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/src/com/channel/CommunicationChannel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/src/com/channel/CommunicationChannel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/src/com/messages/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/src/com/messages/Message.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/src/com/messages/MessageSide.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/src/com/messages/MessageSide.class" afterDir="false" />
@@ -25,6 +27,9 @@
       <list>
         <option value="Enum" />
         <option value="Class" />
+        <option value="JUnit4 Test Class" />
+        <option value="JUnit5 Test Class" />
+        <option value="JUnit3 Test Class" />
       </list>
     </option>
   </component>
@@ -49,13 +54,31 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit3" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Groovy JUnit" value="groovy.util.GroovyTestCase" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3" value="junit.framework.TestCase" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="src.com" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+      <recent name="src" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="junit.framework.TestCase" />
+      <recent name="groovy.util.GroovyTestCase" />
+      <recent name="" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main/java/src/com/worker" />
@@ -75,25 +98,90 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
-      <option name="MAIN_CLASS_NAME" value="src.com.Main" />
+  <component name="RunManager" selected="JUnit.LauncherTest">
+    <configuration name="LauncherTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="thread-challenge" />
-      <option name="VM_PARAMETERS" value="-Dlog4j.configurationFile=log4j.properties" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="src.com.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="src.com" />
+      <option name="MAIN_CLASS_NAME" value="src.com.LauncherTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LauncherTest (2)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="thread-challenge" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.com.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="src.com" />
+      <option name="MAIN_CLASS_NAME" value="src.com.LauncherTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LauncherTest (3)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="thread-challenge" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.com.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="src.com" />
+      <option name="MAIN_CLASS_NAME" value="src.com.LauncherTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LauncherTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="thread-challenge" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.com.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="src.com" />
+      <option name="MAIN_CLASS_NAME" value="src.com.LauncherTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LauncherTest.testStart" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="thread-challenge" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.com.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="src.com" />
+      <option name="MAIN_CLASS_NAME" value="src.com.LauncherTest" />
+      <option name="METHOD_NAME" value="testStart" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.LauncherTest" />
+        <item itemvalue="JUnit.LauncherTest.testStart" />
+        <item itemvalue="JUnit.LauncherTest (3)" />
+        <item itemvalue="JUnit.LauncherTest (2)" />
+        <item itemvalue="JUnit.LauncherTest (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -124,6 +212,15 @@
     </option>
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/src/com/worker/WorkerThread.java</url>
+          <line>312</line>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="this.stack.size()" language="JAVA" />
@@ -132,6 +229,8 @@
         <watch expression="channel.getDisabled()" language="JAVA" />
         <watch expression="pendingRequests.get(threadName)" language="JAVA" />
         <watch expression="channel.getCallbackQueues().get(this.name)" language="JAVA" />
+        <watch expression="exitedThreads.values" language="JAVA" />
+        <watch expression="exitedThreads.containsValue(target)" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>

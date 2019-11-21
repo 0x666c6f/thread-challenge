@@ -6,16 +6,15 @@ import src.com.channel.CommunicationChannel;
 import src.com.messages.Message;
 import src.com.worker.WorkerThread;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ConcurrentHashMap;
 
-class Main {
-    private static final Logger logger = LoggerFactory.getLogger(WorkerThread.class);
+public class Launcher {
+    private static final Logger logger = LoggerFactory.getLogger(Launcher.class);
 
-    public static void main(String[] args) {
+    public static HashMap<String,ArrayList<String>> start() {
 
         logger.info("Initializing threads...");
 
@@ -100,6 +99,7 @@ class Main {
         threadQueuesMap3.put(thread1Name, channel3to1);
         threadQueuesMap3.put(thread2Name, channel3to2);
 
+        ConcurrentHashMap<String,String> exitedThreads = new ConcurrentHashMap<String, String>();
         //Initializing runnable workers for the threads
         WorkerThread worker1 = new WorkerThread(thread1Name, stack1, threadQueuesMap1, requestQueue1);
         WorkerThread worker2 = new WorkerThread(thread2Name, stack2, threadQueuesMap2, requestQueue2);
@@ -114,6 +114,24 @@ class Main {
 
         Thread thread3 = new Thread(worker3);
         thread3.start();
+
+        try
+        {
+            thread1.join();
+            thread2.join();
+            thread3.join();
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+
+        HashMap<String,ArrayList<String>> results = new HashMap<>();
+        results.put(thread1Name,stack1);
+        results.put(thread2Name,stack2);
+        results.put(thread3Name,stack3);
+        logger.info("ALL EXITED");
+        return results;
     }
 
 

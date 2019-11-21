@@ -97,6 +97,7 @@ public class WorkerThread implements Runnable {
                 target = "R";
                 break;
         }
+
         logger.info("New target is = " + target);
     }
 
