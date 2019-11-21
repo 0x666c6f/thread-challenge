@@ -13,7 +13,7 @@ public class LauncherTest extends TestCase {
     private static final Logger logger = LoggerFactory.getLogger(LauncherTest.class);
 
     public void testStart() {
-        for(int i = 0 ; i <= 30; i++){
+        for(int i = 0 ; i <= 50; i++){
             HashMap<String, ArrayList<String>> results =  Launcher.start();
             assertEquals(results.size(),3);
             for(ArrayList<String> result : results.values()){

@@ -99,10 +99,12 @@ public class Launcher {
         threadQueuesMap3.put(thread1Name, channel3to1);
         threadQueuesMap3.put(thread2Name, channel3to2);
 
+        ConcurrentHashMap<String,String> exitedThreads = new ConcurrentHashMap<>();
+
         //Initializing runnable workers for the threads
-        WorkerThread worker1 = new WorkerThread(thread1Name, stack1, threadQueuesMap1, requestQueue1);
-        WorkerThread worker2 = new WorkerThread(thread2Name, stack2, threadQueuesMap2, requestQueue2);
-        WorkerThread worker3 = new WorkerThread(thread3Name, stack3, threadQueuesMap3, requestQueue3);
+        WorkerThread worker1 = new WorkerThread(thread1Name, stack1, threadQueuesMap1, requestQueue1, exitedThreads);
+        WorkerThread worker2 = new WorkerThread(thread2Name, stack2, threadQueuesMap2, requestQueue2, exitedThreads);
+        WorkerThread worker3 = new WorkerThread(thread3Name, stack3, threadQueuesMap3, requestQueue3, exitedThreads);
 
         //Starting threads
         Thread thread1 = new Thread(worker1);

@@ -9,6 +9,7 @@ import src.com.messages.MessageSide;
 import java.sql.Timestamp;
 import java.util.*;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -23,6 +24,7 @@ public class WorkerThread implements Runnable {
     private final String name;
     private final HashMap<String, Message> pendingRequests;
     private static final Logger logger = LoggerFactory.getLogger(WorkerThread.class);
+    private ConcurrentHashMap<String,String> exitedThreads;
 
     /**
      * Constructor of the runnable for the thread
@@ -37,12 +39,13 @@ public class WorkerThread implements Runnable {
      * @param  requestQueue
      *         {@code BlockingQueue<Message>} representing the queue we will listen to to receive the incoming requests
      */
-    public WorkerThread(String name, ArrayList<String> stackArg, HashMap<String, CommunicationChannel> channels, BlockingQueue<Message> requestQueue) {
+    public WorkerThread(String name, ArrayList<String> stackArg, HashMap<String, CommunicationChannel> channels, BlockingQueue<Message> requestQueue, ConcurrentHashMap<String,String> exitedThreads) {
         this.name = name;
         this.stack = stackArg;
         this.channels = channels;
         this.requestQueue = requestQueue;
         this.pendingRequests = new HashMap<>();
+        this.exitedThreads = exitedThreads;
         logger.info("Initializing Worker Thread " + name);
         processMajorColor();
     }
@@ -98,6 +101,9 @@ public class WorkerThread implements Runnable {
                 break;
         }
 
+        if(exitedThreads.values().contains(target)){
+            reprocessTarget();
+        }
         logger.info("New target is = " + target);
     }
 
@@ -149,6 +155,11 @@ public class WorkerThread implements Runnable {
             //Check if we need to exit
             if (targetSet.size() == 1 && stack.size() == 10) {
                 logger.info(this.name.toUpperCase() + " FINISHED");
+                for(String value: targetSet) {
+                    String finalTarget = value;
+                    this.exitedThreads.put(this.name,finalTarget);
+                    break;
+                }
                 exit = true;
             }
         }
@@ -232,7 +243,8 @@ public class WorkerThread implements Runnable {
             }
             try {
                 //Sending response to requesting thread
-                channels.get(threadNameI).getCallbackQueues().get(threadNameI).put(response);
+                if(!exitedThreads.containsKey(threadNameI))
+                    channels.get(threadNameI).getCallbackQueues().get(threadNameI).put(response);
             } catch (InterruptedException | NullPointerException e) {
                 logger.error("Error while trying to put response : " + e.getMessage());
             }
@@ -311,6 +323,9 @@ public class WorkerThread implements Runnable {
                 } else {
                     //The thread didn't have what we asked, we don't do anything
                     logger.warn("Response was null from " + threadName + " : " + response.toString());
+                    if(exitedThreads.values().contains(target)){
+                        reprocessTarget();
+                    }
                 }
             }
 
