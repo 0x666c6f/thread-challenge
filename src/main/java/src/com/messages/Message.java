@@ -13,10 +13,10 @@ public class Message {
     private String ball;
     private Boolean response;
     private Timestamp timestamp;
-    private static ThreadLocalRandom random = ThreadLocalRandom.current();
+    private static final ThreadLocalRandom random = ThreadLocalRandom.current();
 
     /**
-     * Constructor of the {@code Message} without parameter to be able to intialize it without knowing the content beforehand
+     * Constructor of the {@code Message} without parameter to be able to initialize it without knowing the content beforehand
      * Its ID is automatically generated when executed
      */
     public Message() {

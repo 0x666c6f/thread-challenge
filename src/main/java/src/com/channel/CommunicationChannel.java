@@ -11,7 +11,7 @@ import java.util.concurrent.BlockingQueue;
  * In the callbacks map, the callback we will listen will be the one with the key matching our thread name.
  * Example:
  *  Let's say we have Thread A and Thread B
- *  Channel for A->B will be :
+ *  Channel for A to B will be :
  *  ChannelAB{
  *      requestQueueB
  *      Map{
@@ -25,8 +25,8 @@ import java.util.concurrent.BlockingQueue;
  *
  */
 public class CommunicationChannel {
-    private BlockingQueue<Message> requestQueue;
-    private HashMap< String, BlockingQueue<Message>> callbackQueues;
+    private final BlockingQueue<Message> requestQueue;
+    private final HashMap< String, BlockingQueue<Message>> callbackQueues;
 
     /**
      * Constructor of the communication channel we have for a specific thread
@@ -45,15 +45,8 @@ public class CommunicationChannel {
         return requestQueue;
     }
 
-    public void setRequestQueue(BlockingQueue<Message> requestQueue) {
-        this.requestQueue = requestQueue;
-    }
-
     public HashMap< String, BlockingQueue<Message>> getCallbackQueues() {
         return callbackQueues;
     }
 
-    public void setCallbackQueues(HashMap< String, BlockingQueue<Message>> callbackQueues) {
-        this.callbackQueues = callbackQueues;
-    }
 }

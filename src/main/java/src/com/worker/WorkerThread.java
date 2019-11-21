@@ -16,12 +16,12 @@ import java.util.concurrent.BlockingQueue;
  */
 public class WorkerThread implements Runnable {
 
-    private ArrayList<String> stack;
-    private HashMap<String, CommunicationChannel> channels;
-    private BlockingQueue<Message> requestQueue;
+    private final ArrayList<String> stack;
+    private final HashMap<String, CommunicationChannel> channels;
+    private final BlockingQueue<Message> requestQueue;
     private String target;
-    private String name;
-    private HashMap<String, Message> pendingRequests;
+    private final String name;
+    private final HashMap<String, Message> pendingRequests;
     private static final Logger logger = LoggerFactory.getLogger(WorkerThread.class);
 
     /**
@@ -85,9 +85,7 @@ public class WorkerThread implements Runnable {
      * Process the new target to select based on our former target. It will then set our class target with this value.
      */
     private void reprocessTarget() {
-
         logger.info("Switching target from = " + target);
-
         switch (target) {
             case "R":
                 target = "G";
@@ -99,9 +97,7 @@ public class WorkerThread implements Runnable {
                 target = "R";
                 break;
         }
-
         logger.info("New target is = " + target);
-
     }
 
 
@@ -128,12 +124,12 @@ public class WorkerThread implements Runnable {
         boolean exit = false;
         while (!exit) {
 
-            Message incomingMessage = null;
+            Message incomingMessage;
             //Checking if we have incoming messages
             while (requestQueue.size() > 0) {
                 incomingMessage = requestQueue.poll();
                 if (incomingMessage != null && incomingMessage.getThreadName() != null) {
-                    //Process a message if we succesfully polled it
+                    //Process a message if we successfully polled it
                     processIncomingRequest(incomingMessage);
                 }
             }
@@ -226,7 +222,7 @@ public class WorkerThread implements Runnable {
                     logger.error("Couldn't remove " + incomingMessage.getBall() + " from our stack");
                     response.setResponse(null);
                 } else {
-                    logger.info("Sucessfully removed " + incomingMessage.getBall() + " from our stack");
+                    logger.info("Successfully removed " + incomingMessage.getBall() + " from our stack");
                     response.setResponse(true);
                 }
             } else {
@@ -253,8 +249,8 @@ public class WorkerThread implements Runnable {
      * When we process a response we can face several situations:
      *  - we don't have any response, in that case we don't do anything
      *  - we have a rejected response, in that case we need to change our target
-     *  - we have a successfull response, in that case we add the incoming ball to our stack
-     *  - we have a reseponse message, but the response is set as null, that means the requested thread doesn't have what we requested
+     *  - we have a successful response, in that case we add the incoming ball to our stack
+     *  - we have a response message, but the response is set as null, that means the requested thread doesn't have what we requested
      *
      * @param  threadName
      *         {@code String} representing the thread we are trying to send a request to, or treating a response from
@@ -272,7 +268,7 @@ public class WorkerThread implements Runnable {
         //We check that we don't have any outgoing message for this thread before sending a new one
         if (channel.getCallbackQueues().get(this.name).size() == 0 && !pendingRequests.containsKey(threadName)) {
             //We don't have any pending request for this thread
-            Boolean result = channel.getRequestQueue().offer(message);
+            boolean result = channel.getRequestQueue().offer(message);
             if (!result) {
                 //Targeted thread's request queue is full, couldn't sent message, we do nothing
                 return;
@@ -302,11 +298,11 @@ public class WorkerThread implements Runnable {
 
                 if (response.getResponse() != null) {
 
-                    if (response.getResponse() == true) {
+                    if (response.getResponse()) {
                         //Request was accepted, we add it to our stack
                         logger.info("Request was accepted from " + threadName);
                         this.stack.add(response.getBall());
-                    } else if (response.getResponse() == false && response.getBall().equals(this.target)) {
+                    } else if (response.getBall().equals(this.target)) {
                         //Request was rejected, we need to change target
                         logger.warn("Request was rejected from " + threadName);
                         reprocessTarget();
