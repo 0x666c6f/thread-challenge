@@ -11,6 +11,9 @@ import java.util.*;
 import java.util.concurrent.BlockingQueue;
 
 
+/**
+ * Implementation of the thread algorithm and logic. This runnable will be given to the thread, so each thread will have the same algorithm to solve this problem
+ */
 public class WorkerThread implements Runnable {
 
     private ArrayList<String> stack;
@@ -18,9 +21,22 @@ public class WorkerThread implements Runnable {
     private BlockingQueue<Message> requestQueue;
     private String target;
     private String name;
-    private HashMap<String,Message> pendingRequests;
+    private HashMap<String, Message> pendingRequests;
     private static final Logger logger = LoggerFactory.getLogger(WorkerThread.class);
 
+    /**
+     * Constructor of the runnable for the thread
+     *
+     * @param  name
+     *         {@code String} representing the name of the current thread
+     * @param  stackArg
+     *         {@code ArrayList<String>} representing the inventory of the balls we own
+     * @param  channels
+     *         {@code HashMap<String, CommunicationChannel>} representing the different Communication channels we have with the different threads.
+     *         @see     CommunicationChannel
+     * @param  requestQueue
+     *         {@code BlockingQueue<Message>} representing the queue we will listen to to receive the incoming requests
+     */
     public WorkerThread(String name, ArrayList<String> stackArg, HashMap<String, CommunicationChannel> channels, BlockingQueue<Message> requestQueue) {
         this.name = name;
         this.stack = stackArg;
@@ -31,6 +47,10 @@ public class WorkerThread implements Runnable {
         processMajorColor();
     }
 
+    /**
+     * Process the major color based on our ball inventory. The target will be the one with the highest number.
+     * If Green and Red totals are equals, the one selected as highest will be Red. Once calculation is done, it will set our class target with the highest color.
+     */
     private void processMajorColor() {
         int greenTotal = 0;
         int redTotal = 0;
@@ -61,6 +81,9 @@ public class WorkerThread implements Runnable {
 
     }
 
+    /**
+     * Process the new target to select based on our former target. It will then set our class target with this value.
+     */
     private void reprocessTarget() {
 
         logger.info("Switching target from = " + target);
@@ -82,10 +105,22 @@ public class WorkerThread implements Runnable {
     }
 
 
+    /**
+     * Main algorithm of the thread defining its behavior.
+     * To avoid interlocking on start up, we define a random delay before starting.
+     *
+     * Until the thread has only one type of ball, and all of them, it will do the following:
+     *  1. Process all incoming requests until its queue is empty
+     *  2. For each thread communication channel it has, it will either send a request to it, or manage its response
+     *  3. Check if the stopping condition is met
+     *  4. When stopping, it will clear its request and callback queues to avoid blocking the other threads
+     *  5. It will then exit
+     */
     @Override
     public void run() {
         logger.info("Starting Worker Thread " + name);
         try {
+            //Defining random delay for startup to avoid interlocking
             Thread.sleep(new Random().nextInt(1000));
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -94,35 +129,34 @@ public class WorkerThread implements Runnable {
         while (!exit) {
 
             Message incomingMessage = null;
+            //Checking if we have incoming messages
             while (requestQueue.size() > 0) {
                 incomingMessage = requestQueue.poll();
-
                 if (incomingMessage != null && incomingMessage.getThreadName() != null) {
-
+                    //Process a message if we succesfully polled it
                     processIncomingRequest(incomingMessage);
                 }
             }
 
-
+            //Processing outgoing messages and responses for each channel we have
             for (Map.Entry<String, CommunicationChannel> entry : channels.entrySet()) {
                 String threadName = entry.getKey();
                 CommunicationChannel channel = entry.getValue();
 
-                //TODO : tester entry sur key et value != null
-                //if(channel.getDisabled() == false)
-                    processOutgoingRequest(threadName, channel);
+                processOutgoingRequest(threadName, channel);
             }
 
-            Set<String> targetSet = new HashSet<String>(stack);
-            //logger.info("Current stack :" + stack.toString());
-//            logger.info("Current set :" + targetSet.toString());
+            //Check the unique entry set of our stack
+            Set<String> targetSet = new HashSet<>(stack);
 
+            //Check if we need to exit
             if (targetSet.size() == 1 && stack.size() == 10) {
                 logger.info(this.name.toUpperCase() + " FINISHED");
                 exit = true;
             }
         }
 
+        //Clear our queues to avoid blocking the other threads
         for (Map.Entry<String, CommunicationChannel> entry : channels.entrySet()) {
             CommunicationChannel channel = entry.getValue();
 
@@ -130,17 +164,32 @@ public class WorkerThread implements Runnable {
         }
         this.requestQueue.clear();
         logger.info(this.name.toUpperCase() + " EXITED");
+        //Exiting
         Thread.currentThread().interrupt();
     }
 
 
+    /**
+     * Process an incoming request from a message in our request queue.
+     * If the requested ball doesn't match our target, we remove it and allow the other thread to take it, it will return a response {@code Message} with a response set as {@code true}
+     * If request ball matches our target:
+     *  - if we have a pending request with this thread on this specific ball, we check the timestamp to see who needs to switch target. it will return a response {@code Message} with a response set as {@code true}
+     *  The one with the latest timestamp will have to switch. It will return a response {@code Message} with a response set as {@code true}
+     *  - if we don't have any pending request with the thread, we reject it, and the requesting thread will switch color. it will return a response {@code Message} with a response set as {@code false}
+     * If it doesn't have the color, it will return a response {@code Message} with a response set as {@code null}
+     *
+     * @param  incomingMessage
+     *         {@code String} representing the thread we are trying to send a request to, or treating a response from
+     */
     private void processIncomingRequest(Message incomingMessage) {
 
+        //Getting name of the thread sending the message
         String threadNameI = incomingMessage.getThreadName();
 
         Message response = new Message();
 
         if (incomingMessage.getSide() == MessageSide.REQUEST && threadNameI != null) {
+            //Message is a request
             logger.info("Incoming request from " + threadNameI + " = " + incomingMessage.toString());
 
             response.setRequestId(incomingMessage.getRequestId());
@@ -149,20 +198,30 @@ public class WorkerThread implements Runnable {
             response.setBall(incomingMessage.getBall());
 
             if (incomingMessage.getBall().equals(this.target)) {
+                //Requested ball is the same as our target
                 Message pendingMessage = pendingRequests.get(threadNameI);
-                if(pendingMessage != null && pendingMessage.getTimestamp().after(incomingMessage.getTimestamp())){
+
+                //Checking messages timestamps
+                if (pendingMessage != null && pendingMessage.getTimestamp().after(incomingMessage.getTimestamp())) {
+                    //Our timestamp is after this request, so we need to change target.
                     logger.info("Incoming request from " + threadNameI + " is same as our target, but accepting it because timestamp was before ours");
+                    //Request is accepted
                     response.setResponse(true);
+                    //Changing target
                     reprocessTarget();
-                }else {
+                } else {
+                    //Our timestamp is before this request, so we don't change, the requesting thread will
                     logger.info("Incoming request from " + threadNameI + " is rejected because it is our target");
                     response.setResponse(false);
                 }
 
+            //Check if we have the requested ball
             } else if (stack.contains(incomingMessage.getBall())) {
+                //We have the requested ball and it is not our target, accepting it
 
                 logger.info("Incoming request from " + threadNameI + " is not on our target, accepting it");
 
+                //We only respond true if we succeeded to remove the ball from our stack
                 if (!this.stack.remove(incomingMessage.getBall())) {
                     logger.error("Couldn't remove " + incomingMessage.getBall() + " from our stack");
                     response.setResponse(null);
@@ -170,14 +229,12 @@ public class WorkerThread implements Runnable {
                     logger.info("Sucessfully removed " + incomingMessage.getBall() + " from our stack");
                     response.setResponse(true);
                 }
-
-
-
             } else {
+                //We don't have the requested ball, setting response to null
                 response.setResponse(null);
             }
-
             try {
+                //Sending response to requesting thread
                 channels.get(threadNameI).getCallbackQueues().get(threadNameI).put(response);
             } catch (InterruptedException | NullPointerException e) {
                 logger.error("Error while trying to put response : " + e.getMessage());
@@ -187,19 +244,44 @@ public class WorkerThread implements Runnable {
 
     }
 
+    /**
+     * Sends a request to a thread if we don't have a pending request with it. If we have a pending request with it, we process the response instead.
+     * For each request we want to send we timestamp it to be able to check the first sender in case of conflict
+     * We only send a request if we don't already have a pending request with this targeted thread to avoid spamming.
+     * Request messages are sent on the targeted thread request queue.
+     *
+     * When we process a response we can face several situations:
+     *  - we don't have any response, in that case we don't do anything
+     *  - we have a rejected response, in that case we need to change our target
+     *  - we have a successfull response, in that case we add the incoming ball to our stack
+     *  - we have a reseponse message, but the response is set as null, that means the requested thread doesn't have what we requested
+     *
+     * @param  threadName
+     *         {@code String} representing the thread we are trying to send a request to, or treating a response from
+     *
+     * @param  channel
+     *         The object storing the request queue of this thread, and the callbacks we have with it
+     *
+     */
     private void processOutgoingRequest(String threadName, CommunicationChannel channel) {
 
+        //Initializing outgoing message
         Message message = new Message(target, MessageSide.REQUEST, this.name);
-        message.setTimestamp(new Timestamp( new Date().getTime()));
+        message.setTimestamp(new Timestamp(new Date().getTime()));
+
+        //We check that we don't have any outgoing message for this thread before sending a new one
         if (channel.getCallbackQueues().get(this.name).size() == 0 && !pendingRequests.containsKey(threadName)) {
+            //We don't have any pending request for this thread
             Boolean result = channel.getRequestQueue().offer(message);
             if (!result) {
+                //Targeted thread's request queue is full, couldn't sent message, we do nothing
                 return;
             }
             logger.info("Successfully sent request to " + threadName + " = " + message.toString());
+            //Add message to our pending requests
             pendingRequests.put(message.getThreadName(), message);
         } else {
-
+            //We have a pending request for this thread, checking for a response
             Message response = null;
             try {
                 response = channel.getCallbackQueues().get(this.name).poll();
@@ -207,28 +289,34 @@ public class WorkerThread implements Runnable {
                 logger.error("Error while trying to poll response : " + e.getMessage());
             }
 
+            //We check if we have a response. If we don't have any response, we don't do anything
             if (response != null) {
+                //We have a response
+
                 Message pendingMessage = pendingRequests.get(threadName);
 
-                if(pendingMessage != null && response.getRequestId().equals(pendingMessage.getRequestId())){
+                if (pendingMessage != null && response.getRequestId().equals(pendingMessage.getRequestId())) {
+                    //Removing message from pending requests for this thread
                     pendingRequests.remove(threadName);
                 }
+
                 if (response.getResponse() != null) {
 
                     if (response.getResponse() == true) {
+                        //Request was accepted, we add it to our stack
                         logger.info("Request was accepted from " + threadName);
                         this.stack.add(response.getBall());
                     } else if (response.getResponse() == false && response.getBall().equals(this.target)) {
+                        //Request was rejected, we need to change target
                         logger.warn("Request was rejected from " + threadName);
                         reprocessTarget();
-                        channel.setDisabled(false);
                     }
                 } else {
+                    //The thread didn't have what we asked, we don't do anything
                     logger.warn("Response was null from " + threadName + " : " + response.toString());
-                    if(response.getBall().equals(target))
-                        channel.setDisabled(true);
                 }
             }
+
         }
     }
 }
