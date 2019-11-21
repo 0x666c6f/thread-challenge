@@ -21,7 +21,7 @@ public class LauncherTest extends TestCase {
                 assertEquals(targetSet.size(),1);
                 assertEquals(result.size(),10);
                 boolean letterCheck = result.contains("G") || result.contains("R") || result.contains("B");
-                assertEquals(true,letterCheck );
+                assertTrue(letterCheck);
             }
             logger.info("TEST "+i+" OK");
         }
