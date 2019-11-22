@@ -2,7 +2,51 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e4fc943-0220-48ce-91cd-a1b7e90d9628" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.MD" beforeDir="false" afterPath="$PROJECT_DIR$/README.MD" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/allclasses-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/allclasses-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/allclasses-noframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/allclasses-noframe.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/constant-values.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/constant-values.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/deprecated-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/deprecated-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/help-doc.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/help-doc.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/index-files/index-1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-10.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/index-files/index-10.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-11.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/index-files/index-11.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-12.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/index-files/index-12.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-13.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/index-files/index-13.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/index-files/index-2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-3.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/index-files/index-3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-4.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/index-files/index-4.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-5.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/index-files/index-5.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-6.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/index-files/index-6.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-7.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/index-files/index-7.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-8.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/index-files/index-8.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-9.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/index-files/index-9.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/lab577/Launcher.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/lab577/Launcher.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/lab577/LauncherTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/lab577/LauncherTest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/lab577/channel/CommunicationChannel.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/lab577/channel/CommunicationChannel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/lab577/channel/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/lab577/channel/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/lab577/channel/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/lab577/channel/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/lab577/channel/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/lab577/channel/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/lab577/messages/Message.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/lab577/messages/Message.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/lab577/messages/MessageSide.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/lab577/messages/MessageSide.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/lab577/messages/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/lab577/messages/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/lab577/messages/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/lab577/messages/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/lab577/messages/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/lab577/messages/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/lab577/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/lab577/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/lab577/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/lab577/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/lab577/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/lab577/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/lab577/worker/WorkerThread.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/lab577/worker/WorkerThread.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/lab577/worker/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/lab577/worker/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/lab577/worker/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/lab577/worker/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/lab577/worker/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/lab577/worker/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/overview-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/overview-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/overview-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/overview-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/overview-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/overview-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lab577/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lab577/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lab577/worker/WorkerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lab577/worker/WorkerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/lab577/LauncherTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/lab577/LauncherTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -88,8 +132,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.LauncherTest">
-    <configuration name="LauncherTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.LauncherTest.testStart">
+    <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lab577.Launcher" />
       <module name="thread-challenge" />
       <extension name="coverage">
         <pattern>
@@ -97,9 +142,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="lab577" />
-      <option name="MAIN_CLASS_NAME" value="lab577.LauncherTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -167,11 +209,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LauncherTest" />
         <item itemvalue="JUnit.LauncherTest.testStart" />
+        <item itemvalue="Application.Launcher" />
+        <item itemvalue="JUnit.LauncherTest" />
         <item itemvalue="JUnit.LauncherTest (3)" />
         <item itemvalue="JUnit.LauncherTest (2)" />
-        <item itemvalue="JUnit.LauncherTest (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -202,6 +244,15 @@
     </option>
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/lab577/worker/WorkerThread.java</url>
+          <line>144</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="this.stack.size()" language="JAVA" />

@@ -35,6 +35,7 @@ Its algorithm is the following :
 * 4: Check if the condition to stop is met
 * 5: Back to 1 until stop condition is met
 
+
 ## Architecture
 Each thread will have several channels for the communication with the other thread.
 Each thread will have one communication channel per thread.
@@ -49,7 +50,10 @@ Here is the view of the threads in terms of model* :<br/>
 ### Global communication architecture
 Here is the view of the communication architecture:
 ![architecture](images/architecture.png)
-## How-to
+
+## Run
+To launch the solution, you can either launch the main method in the ````Launcher```` class or run the unit test in 
+````LauncherTest```` that will run it several times for you.
 
 ## Javadoc
 The Javadoc can be found in the ``javadoc`` folder

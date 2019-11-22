@@ -124,7 +124,7 @@ public class WorkerThread implements Runnable {
         logger.info("Starting Worker Thread " + name);
         try {
             //Defining random delay for startup to avoid interlocking
-            Thread.sleep(new Random().nextInt(1000));
+            Thread.sleep(new Random().nextInt(100));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

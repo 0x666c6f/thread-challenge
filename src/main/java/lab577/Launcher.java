@@ -18,7 +18,7 @@ public class Launcher {
     private static final Logger logger = LoggerFactory.getLogger(Launcher.class);
 
     /**
-     * Static Method creating the setup and launching the different threads
+     * Static Method creating the setup and launching the different threads. It is used by the unit tests.
      * @return {@code HashMap<String,ArrayList<String>>} containing entries with the thread names, and their stacks
      */
     public static HashMap<String,ArrayList<String>> start() {
@@ -142,9 +142,16 @@ public class Launcher {
         results.put(thread3Name,stack3);
 
         //Exiting and returning result
-        logger.info("ALL EXITED");
+        logger.info("ALL THREADS EXITED");
+
         return results;
     }
 
-
+    /**
+     * Main Method running the solution
+     */
+    public static void main(String[] args){
+        HashMap<String,ArrayList<String>> results = Launcher.start();
+        logger.info("Stacks after execution : " + results.toString());
+    }
 }
