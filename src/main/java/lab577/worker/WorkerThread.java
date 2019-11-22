@@ -145,7 +145,6 @@ public class WorkerThread implements Runnable {
             for (Map.Entry<String, CommunicationChannel> entry : channels.entrySet()) {
                 String threadName = entry.getKey();
                 CommunicationChannel channel = entry.getValue();
-
                 processOutgoingRequest(threadName, channel);
             }
 
@@ -172,7 +171,6 @@ public class WorkerThread implements Runnable {
         this.requestQueue.clear();
         logger.info(this.name.toUpperCase() + " EXITED");
         //Exiting
-        Thread.currentThread().interrupt();
     }
 
 
@@ -229,29 +227,26 @@ public class WorkerThread implements Runnable {
 
                 logger.info("Incoming request from " + threadNameI + " is not on our target, accepting it");
 
-                //We only respond true if we succeeded to remove the ball from our stack
-                if (!this.stack.remove(incomingMessage.getBall())) {
-                    logger.error("Couldn't remove " + incomingMessage.getBall() + " from our stack");
-                    response.setResponse(null);
-                } else {
-                    logger.info("Successfully removed " + incomingMessage.getBall() + " from our stack");
-                    response.setResponse(true);
-                }
-            } else {
-                //We don't have the requested ball, setting response to null
-                response.setResponse(null);
-            }
-            try {
-                //Sending response to requesting thread
-                if (!exitedThreads.containsKey(threadNameI))
-                    channels.get(threadNameI).getCallbackQueues().get(threadNameI).put(response);
-            } catch (InterruptedException | NullPointerException e) {
-                logger.error("Error while trying to put response : " + e.getMessage());
-            }
 
+                response.setResponse(true);
+            }
+        } else {
+            //We don't have the requested ball, setting response to null
+            response.setResponse(null);
+        }
+        try {
+            //Sending response to requesting thread
+            if (!exitedThreads.containsKey(threadNameI)) {
+                channels.get(threadNameI).getCallbackQueues().get(threadNameI).put(response);
+                if (response.getResponse() != null && response.getResponse() == true) {
+                    this.stack.remove(incomingMessage.getBall());
+                }
+            }
+        } catch (InterruptedException | NullPointerException e) {
+            logger.error("Error while trying to put response : " + e.getMessage());
         }
 
-    }
+}
 
     /**
      * Sends a request to a thread if we don't have a pending request with it. If we have a pending request with it, we process the response instead.<br>
@@ -277,7 +272,9 @@ public class WorkerThread implements Runnable {
         message.setTimestamp(new Timestamp(new Date().getTime()));
 
         //We check that we don't have any outgoing message for this thread before sending a new one
-        if (channel.getCallbackQueues().get(this.name).size() == 0 && !pendingRequests.containsKey(threadName)) {
+        if (channel.getCallbackQueues().get(this.name).size() == 0
+                && !pendingRequests.containsKey(threadName)
+                && !exitedThreads.containsKey(threadName)) {
             //We don't have any pending request for this thread
             boolean result = channel.getRequestQueue().offer(message);
             if (!result) {
@@ -286,7 +283,7 @@ public class WorkerThread implements Runnable {
             }
             logger.info("Successfully sent request to " + threadName + " = " + message.toString());
             //Add message to our pending requests
-            pendingRequests.put(message.getThreadName(), message);
+            pendingRequests.put(threadName, message);
         } else {
             //We have a pending request for this thread, checking for a response
             Message response = null;
