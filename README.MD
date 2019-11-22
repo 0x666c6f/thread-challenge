@@ -22,7 +22,7 @@ Its algorithm is the following :
 
 ## Architecture
 
-![architecture](/Users/florian/Dev/Code/Perso/thread-challenge/images/architecture.png)
+![architecture](images/architecture.png)
 ## How-to
 
 ## Javadoc
