@@ -43,7 +43,7 @@ the callbacks queues we have with it.
 In solution, each queue has a capacity of only 1.
 
 ### Thread communication model
-Here is the view of the threads in terms of model* :
+Here is the view of the threads in terms of model* :<br/>
 ![architecture](images/thread-detailed-view.png)<br/>
 *Only the queues and channel are detailed in this model for clarity purposes
 ### Global communication architecture
