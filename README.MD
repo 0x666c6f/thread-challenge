@@ -41,7 +41,7 @@ Each thread will have several channels for the communication with the other thre
 Each thread will have one communication channel per thread.
 A communication channel is composed of the request queue of the target thread, and
 the callbacks queues we have with it.
-In solution, each queue has a capacity of only 1.
+In this solution, each queue has a capacity of only 1.
 
 ### Thread communication model
 Here is the view of the threads in terms of model* :<br/>
