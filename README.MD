@@ -53,7 +53,7 @@ Here is the view of the communication architecture:
 
 ## Run
 To launch the solution, you can either launch the main method in the ````Launcher```` class or run the unit test in 
-````LauncherTest```` that will run it several times for you.
+````LauncherTest```` class that will run it several times for you.
 
 ## Javadoc
 The Javadoc can be found in the ``javadoc`` folder
