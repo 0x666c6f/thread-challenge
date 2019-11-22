@@ -2,66 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e4fc943-0220-48ce-91cd-a1b7e90d9628" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.MD" beforeDir="false" afterPath="$PROJECT_DIR$/README.MD" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/architecture.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/architecture.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/allclasses-frame.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/allclasses-noframe.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/constant-values.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/deprecated-list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/help-doc.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-10.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-11.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-12.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-13.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-3.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-4.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-5.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-6.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-7.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-8.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index-files/index-9.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/overview-frame.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/overview-summary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/overview-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/package-list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/src/com/Launcher.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/src/com/LauncherTest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/src/com/Main.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/src/com/channel/CommunicationChannel.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/src/com/channel/package-frame.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/src/com/channel/package-summary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/src/com/channel/package-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/src/com/messages/Message.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/src/com/messages/MessageSide.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/src/com/messages/package-frame.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/src/com/messages/package-summary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/src/com/messages/package-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/src/com/package-frame.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/src/com/package-summary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/src/com/package-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/src/com/worker/WorkerThread.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/src/com/worker/package-frame.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/src/com/worker/package-summary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/src/com/worker/package-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javadoc/stylesheet.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/src/com/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lab577/Launcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/src/com/channel/CommunicationChannel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lab577/channel/CommunicationChannel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/src/com/messages/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lab577/messages/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/src/com/messages/MessageSide.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lab577/messages/MessageSide.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/src/com/worker/WorkerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lab577/worker/WorkerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/src/com/LauncherTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/lab577/LauncherTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/src/com/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/src/com/channel/CommunicationChannel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/src/com/messages/Message.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/src/com/messages/MessageSide.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/src/com/worker/WorkerThread.class" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
