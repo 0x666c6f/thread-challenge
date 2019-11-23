@@ -149,6 +149,7 @@ class Launcher {
 
     /**
      * Main Method running the solution
+     * @param args {@code String[]}
      */
     public static void main(String[] args){
         HashMap<String,ArrayList<String>> results = Launcher.start();
