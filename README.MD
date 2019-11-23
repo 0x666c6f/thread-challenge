@@ -60,7 +60,7 @@ to change that, you need to change the ```NUMBER_OF_RUN``` value.
 ## Javadoc
 The Javadoc can be found in the ``javadoc`` folder
 
-##Known issue
+## Known issue
 It can sometimes happen that a ball "disappears/appears" from a stack despite all checks done, which will provoke an 
 infinite loop because there will be only one thread alive with 9 or 11 balls of the same color. 
 It happens randomly around 1/1000 run.
