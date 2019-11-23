@@ -1,19 +1,18 @@
 package lab577.messages;
 
 import java.sql.Timestamp;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Object representing the messages exchanged between the threads through the different queues
  */
 public class Message {
-    private Integer requestId;
+    private static int currentId = 0;
+    private int requestId;
     private String threadName;
     private MessageSide side;
     private String ball;
     private Boolean response;
     private Timestamp timestamp;
-    private static final ThreadLocalRandom random = ThreadLocalRandom.current();
 
     /**
      * Constructor of the {@code Message} without parameter to be able to initialize it without knowing the content beforehand<br>
@@ -52,7 +51,8 @@ public class Message {
      * Random ID generator method
      */
     private void generateID() {
-        this.requestId = random.nextInt(999999);
+        currentId++;
+        this.requestId = currentId;
     }
 
     public String getBall() {

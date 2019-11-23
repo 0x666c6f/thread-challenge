@@ -10,18 +10,19 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Test class running the program 10 times to check that the solution works and that we have the same result every time
+ * Test class running the program 100 times to check that the solution works and that we have the same result every time
  */
 public class LauncherTest extends TestCase {
     private static final Logger logger = LoggerFactory.getLogger(LauncherTest.class);
 
     /**
-     * Run the {@code Launcher} 10 times, and check that the value returned match the expected value.<br>
+     * Run the {@code Launcher} 100 times, and check that the value returned match the expected value.<br>
      * If all tests are OK, then the test will pass, otherwise it will fail. In case of failure, it is more probable that it
      * stays stuck, than returning a wrong value
      */
     public void testStart() {
-        for(int i = 0 ; i <= 10; i++){
+        int NUMBER_OF_RUN = 100;
+        for(int i = 0; i <= NUMBER_OF_RUN; i++){
             HashMap<String, ArrayList<String>> results =  Launcher.start();
             assertEquals(results.size(),3);
             for(ArrayList<String> result : results.values()){

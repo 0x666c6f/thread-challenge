@@ -122,12 +122,6 @@ public class WorkerThread implements Runnable {
     @Override
     public void run() {
         logger.info("Starting Worker Thread " + name);
-        try {
-            //Defining random delay for startup to avoid interlocking
-            Thread.sleep(new Random().nextInt(100));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         boolean exit = false;
         while (!exit) {
 
@@ -148,12 +142,10 @@ public class WorkerThread implements Runnable {
                 processOutgoingRequest(threadName, channel);
             }
 
-            //Check the unique entry set of our stack
-            Set<String> targetSet = new HashSet<>(stack);
-
             //Check if we need to exit
-            if (targetSet.size() == 1 && stack.size() == 10) {
+            if (isWorkFinished()) {
                 logger.info(this.name.toUpperCase() + " FINISHED");
+                Set<String> targetSet = new HashSet<>(stack);
                 for (String value : targetSet) {
                     this.exitedThreads.put(this.name, value);
                     break;
@@ -170,6 +162,7 @@ public class WorkerThread implements Runnable {
         }
         this.requestQueue.clear();
         logger.info(this.name.toUpperCase() + " EXITED");
+        logger.info(this.name.toUpperCase() + " stack = ("+this.stack.size()+") "+this.stack.toString());
         //Exiting
     }
 
@@ -238,7 +231,7 @@ public class WorkerThread implements Runnable {
             //Sending response to requesting thread
             if (!exitedThreads.containsKey(threadNameI)) {
                 channels.get(threadNameI).getCallbackQueues().get(threadNameI).put(response);
-                if (response.getResponse() != null && response.getResponse() == true) {
+                if (response.getResponse() != null && response.getResponse()) {
                     this.stack.remove(incomingMessage.getBall());
                 }
             }
@@ -313,18 +306,33 @@ public class WorkerThread implements Runnable {
                     } else if (response.getBall().equals(this.target)) {
                         //Request was rejected, we need to change target
                         logger.warn("Request was rejected from " + threadName);
-                        reprocessTarget();
+
+                        //Check if we need to exit
+                        if (!isWorkFinished()) {
+                            reprocessTarget();
+                        }
                     }
                 } else {
                     //The thread didn't have what we asked
                     logger.warn("Response was null from " + threadName + " : " + response.toString());
                     //If we  switched target and now we have a target that is from a thread already completed, we need to switch to avoid being blocked
                     if (exitedThreads.containsValue(target)) {
-                        reprocessTarget();
+                        if (!isWorkFinished()) {
+                            reprocessTarget();
+                        }
                     }
                 }
             }
 
         }
+    }
+
+    /**
+     * Method checking if we have 10 balls of the same color
+     * @return {@code boolean}
+     **/
+    private boolean isWorkFinished(){
+        Set<String> targetSet = new HashSet<>(stack);
+        return targetSet.size() == 1 && stack.size() == 10;
     }
 }

@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="3e4fc943-0220-48ce-91cd-a1b7e90d9628" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.MD" beforeDir="false" afterPath="$PROJECT_DIR$/README.MD" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lab577/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lab577/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lab577/messages/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lab577/messages/Message.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/lab577/worker/WorkerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lab577/worker/WorkerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/log4j.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/lab577/LauncherTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/lab577/LauncherTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -91,7 +93,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.LauncherTest.testStart">
+  <component name="RunManager" selected="JUnit.LauncherTest (3)">
     <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="lab577.Launcher" />
       <module name="thread-challenge" />
@@ -143,9 +145,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LauncherTest.testStart" />
-        <item itemvalue="Application.Launcher" />
         <item itemvalue="JUnit.LauncherTest (3)" />
+        <item itemvalue="Application.Launcher" />
+        <item itemvalue="JUnit.LauncherTest.testStart" />
       </list>
     </recent_temporary>
   </component>

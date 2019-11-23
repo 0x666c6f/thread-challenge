@@ -53,7 +53,14 @@ Here is the view of the communication architecture:
 
 ## Run
 To launch the solution, you can either launch the main method in the ````Launcher```` class or run the unit test in 
-````LauncherTest```` class that will run it several times for you.
+````LauncherTest```` class that will run it several times for you. By default, it will run 100 times. If you want 
+to change that, you need to change the ```NUMBER_OF_RUN``` value.
+
 
 ## Javadoc
 The Javadoc can be found in the ``javadoc`` folder
+
+##Known issue
+It can sometimes happen that a ball "disappears/appears" from a stack despite all checks done, which will provoke an 
+infinite loop because there will be only one thread alive with 9 or 11 balls of the same color. 
+It happens randomly around 1/1000 run.

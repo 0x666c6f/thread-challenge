@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Main class doing the set up for all the threads, the queues, and the ball stacks, and the run of the algorithm.
  */
-public class Launcher {
+class Launcher {
     private static final Logger logger = LoggerFactory.getLogger(Launcher.class);
 
     /**
